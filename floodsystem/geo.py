@@ -21,4 +21,24 @@ def stations_by_distance(stations, p):
     return sorted_stations_by_distance
 
 
+def stations_within_radius(stations, centre, r):
+    """ This function returns a list of all stations within a radius r of the centre """
+
+    # Handle edge cases
+    if r <= 0 or not stations:
+        return []
+    
+    stations = stations_by_distance(stations, centre)
+
+    within_radius = []
+    for station, distance in stations:
+        if distance < r:
+            within_radius.append(station)
+        else:
+            break
+    
+    return within_radius
+
+
+
 

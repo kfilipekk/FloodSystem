@@ -13,8 +13,8 @@ def run():
     
     """
 
-    stations = build_station_list()
-    stations = stations_by_distance(stations, p)
+    all_stations = build_station_list()
+    stations = stations_by_distance(all_stations, p)
 
     closest_10_stations = [(station.name, station.town, distance) for station, distance in stations[:10]]
     furthest_10_stations = [(station.name, station.town, distance) for station, distance in stations[-10:]]
