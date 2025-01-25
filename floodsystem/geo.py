@@ -6,4 +6,8 @@ geographical data.
 
 """
 
+def stations_by_distance(stations, p):
+    None
+
+
 from .utils import sorted_by_key  # noqa
