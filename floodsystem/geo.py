@@ -8,6 +8,8 @@ geographical data.
 
 from haversine import haversine, Unit
 from .utils import sorted_by_key  # noqa
+from collections import Counter
+from .station import MonitoringStation
 
 def stations_by_distance(stations, p):
     """ This function returns a list of (station, distance)
@@ -42,3 +44,14 @@ def stations_within_radius(stations, centre, r):
 
 
 
+def rivers_with_stations(stations: list[MonitoringStation]) -> set[str]:
+    """ Returns a list of all the rivers which have a station as a set """
+    rivers = set([s.river for s in stations if s.river])
+    return rivers
+
+def stations_by_river(stations: list[MonitoringStation]) -> dict[str,list]:
+    """ Returns a dictionary of the rivers with the river as the key and the stations it has as a list value """
+    river_dict = {}
+    for s in stations:
+        river_dict.setdefault(s.river, []).append(s)
+    return river_dict
