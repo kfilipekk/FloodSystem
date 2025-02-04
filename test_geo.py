@@ -5,14 +5,12 @@ from floodsystem.geo import stations_within_radius
 from haversine import haversine
 from floodsystem.utils import sorted_by_key
 
-
-
-def test_stations_by_distance():
-
-    class MockStation:
+class MockStation:
         def __init__(self, name, coord):
             self.name = name
             self.coord = coord
+
+def test_stations_by_distance():
 
     # Mock data: create mock stations with coordinates
     station1 = MockStation("Station 1", (52.205, 0.1218))  # Cambridge
@@ -39,16 +37,12 @@ def test_stations_by_distance():
 
 def test_stations_within_radius():
 
-    class MockStation:
-        def __init__(self, name):
-            self.name = name
-
     # Mock data
-    station1 = MockStation("Station 1")
-    station2 = MockStation("Station 2")
-    station3 = MockStation("Station 3")
+    station1 = MockStation("Station 1", (0, 1)) # distance = 111.19
+    station2 = MockStation("Station 2", (2, 2)) # distance = 314.47
+    station3 = MockStation("Station 3", (5, 12)) # distance = 1443.96
 
-    stations = [(station1, 1.0), (station2, 2.5), (station3, 5.0)]  # Station-Distance pairs
+    stations = [station1, station2, station3]  # Station-Distance pairs
     centre = (0, 0)  # Mock centre
 
     # Edge cases
@@ -57,11 +51,8 @@ def test_stations_within_radius():
     assert stations_within_radius(stations, centre, -5) == []  # Negative radius
 
     # Functional cases
-    assert stations_within_radius(stations, centre, 1.5) == [s1]  # Only s1 in range
-    assert stations_within_radius(stations, centre, 3) == [s1, s2]  # s1 and s2 in range
-    assert stations_within_radius(stations, centre, 10) == [s1, s2, s3]  # All stations in range
-    assert stations_within_radius(stations, centre, 5) == [s1, s2]  # Edge case: s3 is at r=5 but excluded
+    assert stations_within_radius(stations, centre, 120) == [station1]  
+    assert stations_within_radius(stations, centre, 320) == [station1, station2]  
+    assert stations_within_radius(stations, centre, 1500) == [station1, station2, station3]  
 
-
-
-
+test_stations_within_radius()
