@@ -51,10 +51,6 @@ def test_stations_within_radius():
     stations = [(station1, 1.0), (station2, 2.5), (station3, 5.0)]  # Station-Distance pairs
     centre = (0, 0)  # Mock centre
 
-    # Mock function for sorting 
-    def stations_by_distance(stations):
-        return sorted(stations, key=lambda x: x[1])  # Already sorted in this case
-
     # Edge cases
     assert stations_within_radius([], centre, 10) == []  # No stations
     assert stations_within_radius(stations, centre, 0) == []  # Radius 0
