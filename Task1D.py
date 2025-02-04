@@ -3,7 +3,7 @@ from floodsystem.geo import rivers_with_stations, stations_by_river
 from floodsystem.stationdata import build_station_list
 
 def run():
-    """ Requirements for task 1B.
+    """ Requirements for task 1D.
     Prints the number of rivers wih stations and the first 10 in alphabetical order.
     Prints the names of the stations for 3 rivers
     """
@@ -13,7 +13,7 @@ def run():
 
     river_set = rivers_with_stations(stations)
     print(f"{len(river_set)} rivers with at least one monitoring station\n")
-    print(f"{sorted(river_set)[0:9]}\n")
+    print(f"The first 10 are {sorted(river_set)[0:9]}\n")
 
 
     river_dict = stations_by_river(stations)

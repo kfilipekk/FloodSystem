@@ -6,7 +6,7 @@ geographical data.
 
 """
 
-from haversine import haversine, Unit
+from haversine import haversine
 from .utils import sorted_by_key  # noqa
 from collections import Counter
 from .station import MonitoringStation
@@ -49,7 +49,7 @@ def rivers_with_stations(stations: list[MonitoringStation]) -> set[str]:
     rivers = set([s.river for s in stations])
     return rivers
 
-def stations_by_river(stations: list[MonitoringStation]) -> dict[str,list]:
+def stations_by_river(stations: list[MonitoringStation]) -> dict[str,MonitoringStation]:
     """ Returns a dictionary of the rivers with the river as the key and the stations it has as a list value """
     river_station_dict = {}
     for s in stations:
@@ -58,7 +58,7 @@ def stations_by_river(stations: list[MonitoringStation]) -> dict[str,list]:
 
 
 
-def rivers_by_station_number(stations, N):
+def rivers_by_station_number(stations: list[MonitoringStation], N: int) -> list[(str,int)]:
     """Returns a list of (river name, number of stations) tuples, sorted by number of stations """
     ##Counter creates a dictionary with the rivers as keys and the number of stations in them as values
     river_counts = Counter(s.river for s in stations)
