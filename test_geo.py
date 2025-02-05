@@ -1,5 +1,6 @@
 """ Unit test for the geo module """
 from floodsystem.geo import stations_by_distance
+from floodsystem.geo import stations_within_radius
 from floodsystem.geo import rivers_with_stations
 from floodsystem.geo import stations_by_river
 from floodsystem.geo import rivers_by_station_number
@@ -8,12 +9,13 @@ from floodsystem.utils import sorted_by_key
 import pytest
 
 class MockStation:
-    def __init__(self, name, coord):
-        self.name = name
-        self.coord = coord
+        def __init__(self, name, coord):
+            self.name = name
+            self.coord = coord
 
 
 def test_stations_by_distance():
+
     # Mock data: create mock stations with coordinates
     station1 = MockStation("Station 1", (52.205, 0.1218))  # Cambridge
     station2 = MockStation("Station 2", (48.8566, 2.3522))  # Paris
@@ -90,3 +92,24 @@ def test_rivers_by_station_number(sample_stations: list[MockStation2]) -> None:
     expected_list_N1 = [("River C", 3)]
     assert rivers_by_station_number(sample_stations, 1) == expected_list_N1
 
+def test_stations_within_radius():
+
+    # Mock data
+    station1 = MockStation("Station 1", (0, 1)) # distance = 111.19
+    station2 = MockStation("Station 2", (2, 2)) # distance = 314.47
+    station3 = MockStation("Station 3", (5, 12)) # distance = 1443.96
+
+    stations = [station1, station2, station3]  # Station-Distance pairs
+    centre = (0, 0)  # Mock centre
+
+    # Edge cases
+    assert stations_within_radius([], centre, 10) == []  # No stations
+    assert stations_within_radius(stations, centre, 0) == []  # Radius 0
+    assert stations_within_radius(stations, centre, -5) == []  # Negative radius
+
+    # Functional cases
+    assert stations_within_radius(stations, centre, 120) == [station1]  
+    assert stations_within_radius(stations, centre, 320) == [station1, station2]  
+    assert stations_within_radius(stations, centre, 1500) == [station1, station2, station3]  
+
+test_stations_within_radius()
