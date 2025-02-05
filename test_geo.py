@@ -109,5 +109,3 @@ def test_stations_within_radius():
     assert stations_within_radius(stations, centre, 120) == [station1]  
     assert stations_within_radius(stations, centre, 320) == [station1, station2]  
     assert stations_within_radius(stations, centre, 1500) == [station1, station2, station3]  
-
-test_stations_within_radius()
