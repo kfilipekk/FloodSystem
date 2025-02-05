@@ -76,8 +76,6 @@ def test_stations_by_river(sample_stations: list[MockStation2]) -> None:
     }
     assert stations_by_river(sample_stations) == expected_dict
 
-
-
 def test_rivers_by_station_number(sample_stations: list[MockStation2]) -> None:
     """ Test that rivers_by_station_number returns the correct sorted list of river counts """
     expected_list_N4 = [("River C", 3), ("River A", 2), ("River D", 2), ("River B", 1), ("River E", 1), ("River F", 1)]
