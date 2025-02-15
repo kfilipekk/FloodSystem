@@ -1,0 +1,24 @@
+from floodsystem.stationdata import build_station_list, update_water_levels
+
+
+def run():
+    """Requirements for Task2B 
+    Outputs stations for which current relative level is over 0.8"""
+
+    # Build station list
+    stations = build_station_list()
+
+    # Update water levels to current levels
+    update_water_levels(stations)
+
+    for station in stations:
+        if station.typical_range_consistent():
+            try:
+                if station.relative_water_level() > 0.8:
+                    print(station.name, station.relative_water_level())
+            except TypeError:
+                pass
+
+        
+if __name__ == "__main__":
+    run()
