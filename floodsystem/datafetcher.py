@@ -130,6 +130,8 @@ def fetch_measure_levels(measure_id, dt):
     url_options = "/readings/?_sorted&since=" + start.isoformat() + 'Z'
     url = url_base + url_options
 
+    print(url)
+
     # Fetch data
     data = fetch(url)
 
