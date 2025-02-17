@@ -14,10 +14,10 @@ def run():
     stations = build_station_list()
 
     # Station name to find
-    station_name = "Cam"
+    station_name = "Comberton"
 
     # Find station
-    station_cam = None
+    station_cam = None  
     for station in stations:
         if station.name == station_name:
             station_cam = station
@@ -39,6 +39,7 @@ def run():
 
     # Fetch data over past 2 days
     dt = 2
+    print(fetch_measure_levels(station_cam.measure_id, dt=datetime.timedelta(days=dt)))
     dates, levels = fetch_measure_levels(
         station_cam.measure_id, dt=datetime.timedelta(days=dt))
 
