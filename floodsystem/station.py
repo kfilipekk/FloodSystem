@@ -51,6 +51,19 @@ class MonitoringStation:
             return None
         except TypeError:
             return None
+        
+    def readable_risk(self):
+        """ Returns a human-readable risk level based on flood_risk_factor. """
+        if self.flood_risk_factor >= 5:
+            return "Very Severe"
+        if self.flood_risk_factor >= 3:
+            return "Severe"
+        elif self.flood_risk_factor >= 2:
+            return "High"
+        elif self.flood_risk_factor >= 1:
+            return "Moderate"
+        else:
+            return "Low"
 
 
 def inconsistent_typical_range_stations(stations):
