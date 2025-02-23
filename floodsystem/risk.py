@@ -5,7 +5,7 @@ from floodsystem.geo import stations_by_river, stations_within_radius
 initial_water_level_weight = 0.5
 river_level_weight = 0.3
 normal_water_level = 0.0
-effective_radius = 50.0
+radius = 50.0
 
 
 def determine_numerical_risk(stations):
@@ -25,7 +25,7 @@ def determine_numerical_risk(stations):
 
     ##Estimate risk for stations with missing data from nearby stations
     for station in bad_stations:
-        nearby_stations = stations_within_radius(good_stations, station.coord, effective_radius)
+        nearby_stations = stations_within_radius(good_stations, station.coord, radius)
         station.flood_risk_factor = (sum(s.flood_risk_factor for s in nearby_stations) / len(nearby_stations)) if nearby_stations else 0
 
 
