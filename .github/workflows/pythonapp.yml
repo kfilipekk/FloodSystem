@@ -30,8 +30,8 @@ jobs:
       - name: Set up virtual display with Xvfb
         run: |
           export DISPLAY=:99
-          Xvfb :99 & 
-        
+          Xvfb :99 &
+
       - name: Lint with flake8 (non-blocking)
         run: flake8 --exit-zero --statistics *.py
 
@@ -49,6 +49,7 @@ jobs:
 
       - name: Run Deliverable 2 code
         run: |
+          export DISPLAY=:99
           python Task2A.py
           python Task2B.py
           python Task2C.py
