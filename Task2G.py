@@ -17,13 +17,15 @@ def update_display():
         listbox.insert(tk.END, station_info)
 
         ##Colour code 
-        if risk_label == "Severe":
+        if risk_label == "Very Severe":
             listbox.itemconfig(tk.END, {'fg': 'red'})
+        if risk_label == "Severe":
+            listbox.itemconfig(tk.END, {'fg': '#FF8C00'})
         elif risk_label == "High":
             listbox.itemconfig(tk.END, {'fg': 'orange'})
         elif risk_label == "Moderate":
             listbox.itemconfig(tk.END, {'fg': 'blue'})
-        else:
+        elif risk_label == "Low":
             listbox.itemconfig(tk.END, {'fg': 'green'})
 
 ##Create the main application window
