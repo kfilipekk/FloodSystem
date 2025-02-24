@@ -32,6 +32,11 @@ def plot_water_level_with_fit(station, dates, levels, p):
     ##poly() evaluates the polynomial at the given x values
     plt.plot(mdates.num2date(x1), poly(x1 - d0), label=f"Degree {p} Fit")
 
+    if station.typical_range is not None:
+        low, high = station.typical_range
+        plt.axhline(y=low, color='r', linestyle='--', label="Typical Low")
+        plt.axhline(y=high, color='g', linestyle='--', label="Typical High")
+
     plt.xlabel('date')
     plt.ylabel('water level (m)')
     plt.xticks(rotation=45)
