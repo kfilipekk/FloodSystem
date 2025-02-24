@@ -2,7 +2,7 @@ from collections import defaultdict
 from floodsystem.station import inconsistent_typical_range_stations
 from floodsystem.geo import stations_by_river, stations_within_radius
 
-## Constants for risk calculation
+##Constants for risk calculation
 initial_water_level_weight = 0.5
 river_level_weight = 0.3
 normal_water_level = 0.0

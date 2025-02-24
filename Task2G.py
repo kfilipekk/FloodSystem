@@ -15,7 +15,7 @@ def update_display():
 
         listbox.insert(tk.END, town_info)
 
-        ## Colour code
+        ##Colour code
         if risk_label == "Very Severe":
             listbox.itemconfig(tk.END, {'fg': 'red'})
         elif risk_label == "Severe":
@@ -40,17 +40,17 @@ def readable_risk(factor):
     else:
         return "Low"
 
-## Create the main application window
+##Create the main application window
 root = tk.Tk()
 root.title("Flood Warning System")
 title_label = tk.Label(root, text="Top 20 High-Risk Towns", font=("Arial", 14, "bold"))
 title_label.pack(pady=10)
 
-## Create a listbox to display town risks
+##Create a listbox to display town risks
 listbox = tk.Listbox(root, width=80, height=20, font=("Arial", 12))
 listbox.pack(pady=10)
 
-## Refresh button to update data
+##Refresh button to update data
 refresh_button = tk.Button(root, text="Refresh Data", command=update_display, font=("Arial", 12))
 refresh_button.pack(pady=10)
 
