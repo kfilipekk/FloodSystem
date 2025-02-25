@@ -51,19 +51,6 @@ class MonitoringStation:
             return None
         except TypeError:
             return None
-        
-    def readable_risk(self):
-        if self.flood_risk_factor >= 5:
-            return "Very Severe"
-        if self.flood_risk_factor >= 2.5:
-            return "Severe"
-        elif self.flood_risk_factor >= 2:
-            return "High"
-        elif self.flood_risk_factor >= 1:
-            return "Moderate"
-        else:
-            return "Low"
-
 
 def inconsistent_typical_range_stations(stations):
     return [s for s in stations if not s.typical_range_consistent()]
