@@ -51,18 +51,18 @@ def plot_stations_on_map():
             popup=f"{station.name} ({station.town or 'Unknown Town'})\n{status}"
         ).add_to(map_)
     
-    ##Adding a legend
+    ##Adding a larger legend
     legend_html = '''
     <div style="position: fixed; 
-                bottom: 50px; left: 50px; width: 200px; height: 120px; 
-                background-color: white; z-index:9999; padding: 10px;
+                bottom: 50px; left: 50px; width: 250px; height: 150px; 
+                background-color: white; z-index:9999; padding: 15px;
                 font-size: 14px; border: 2px solid grey; border-radius: 5px;">
         <b>Water Level Status</b><br>
-        <i class="fa fa-circle" style="color:green"></i> Below typical<br>
-        <i class="fa fa-circle" style="color:blue"></i> Within typical<br>
-        <i class="fa fa-circle" style="color:orange"></i> Above typical<br>
-        <i class="fa fa-circle" style="color:red"></i> Severely above<br>
-        <i class="fa fa-circle" style="color:grey"></i> No data
+        <i class="fa fa-circle" style="color:green"></i> Below typical range<br>
+        <i class="fa fa-circle" style="color:blue"></i> Within typical range<br>
+        <i class="fa fa-circle" style="color:orange"></i> Above typical range<br>
+        <i class="fa fa-circle" style="color:red"></i> Severely above typical range<br>
+        <i class="fa fa-circle" style="color:grey"></i> No data available
     </div>
     '''
     map_.get_root().html.add_child(folium.Element(legend_html))
@@ -80,15 +80,18 @@ def display_map_in_browser():
 def create_gui():
     root = tk.Tk()
     root.title("Flood Monitoring System")
-    root.geometry("300x200")
+    root.geometry("350x300")
 
     label = tk.Label(root, text="Flood Monitoring System", font=("Arial", 14))
     label.pack(pady=10)
 
-    btn_display = tk.Button(root, text="Show Map", command=display_map_in_browser, height=2, width=15)
+    btn_display = tk.Button(root, text="Show Map", command=display_map_in_browser, height=2, width=20)
     btn_display.pack(pady=10)
 
-    btn_exit = tk.Button(root, text="Exit", command=root.quit, height=2, width=15)
+    btn_refresh = tk.Button(root, text="Refresh Data", command=plot_stations_on_map, height=2, width=20)
+    btn_refresh.pack(pady=10)
+
+    btn_exit = tk.Button(root, text="Exit", command=root.quit, height=2, width=20)
     btn_exit.pack(pady=10)
 
     root.mainloop()
